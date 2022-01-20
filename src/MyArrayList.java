@@ -1,15 +1,20 @@
-public class MyArrayList {
+public class MyArrayList<E> {
+
     private int size = 0;
     private Object[] array = new Object[10];
 
-    public int getSize() {
-        return size;
+    public MyArrayList() {}
+
+    public MyArrayList(int initialCapacity) {
+        if (initialCapacity > 0) {
+            this.array = new Object[initialCapacity];
+        } else {
+            throw new IllegalArgumentException("Illegal Capacity: "+ initialCapacity);
+        }
     }
 
-    public void add(Object o) {
+    public void add(E o) {
         array[size] = o;
-
-        System.out.println("array[size] " + array[size]);
         size++;
         if (size == array.length) {
             Object[] newArray = new Object[array.length * 2];
@@ -78,5 +83,9 @@ public class MyArrayList {
         } else {
             throw new IndexOutOfBoundsException();
         }
+    }
+
+    public int getSize() {
+        return size;
     }
 }
